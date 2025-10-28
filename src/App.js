@@ -9,6 +9,11 @@ import { getAudioContext, webaudioOutput, registerSynthSounds } from '@strudel/w
 import { registerSoundfonts } from '@strudel/soundfonts';
 import { stranger_tune } from './tunes';
 import console_monkey_patch, { getD3Data } from './console-monkey-patch';
+import PlayButton from './components/Play_Button'; 
+import ProcessButton from './components/Process_Button';
+import DJControl from './components/DJ_Control';
+import Header from './components/Header';
+import TextArea from './components/Text_Area';
 
 let globalEditor = null;
 
@@ -108,50 +113,30 @@ useEffect(() => {
 
 return (
     <div>
-        <h2  style={{
-        color: "purple",
-        textAlign: "center",
-        padding: "12px",
-        borderRadius: "10px",
-        }}>🎶 Strudel Live-Coding 🎶</h2>
-        
+        <Header/>
         <main>
-
-            <div className="container-fluid">
-                <div className="row g-3">
-                    <div className="col-md-8" style={{ maxHeight: '50vh', overflowY: 'auto' }}>
-                        <label htmlFor="exampleFormControlTextarea1" className="form-label">Text to preprocess:</label>
-                        <textarea className="form-control" rows="15" id="proc" ></textarea>
-                    </div>
-                    <div className="col-md-4">
-
-                        <nav className='container d-flex flex-column'  style={{ gap: "10px", marginTop: "40px" }}>
-                            <button id="process" className="btn btn-primary w-50 mb-2">Preprocess</button>
-                            <button id="process_play" className="btn btn-warning w-50 mb-2">Proc & Play</button>
-                            <button id="play" className="btn btn-success w-50 mb-2">Play</button>
-                            <button id="stop" className="btn btn-danger w-50 mb-2">Stop</button>
-                        </nav>
-                    </div>
+            <div className="row g-3">
+                <div className="col-md-8" style={{ maxHeight: '50vh', overflowY: 'auto' }}>
+                    <TextArea/>
                 </div>
+                <div className="col-md-4">
+                    <nav className='container d-flex flex-column'  style={{ gap: "10px", marginTop: "40px" }}>
+                        <ProcessButton/>
+                        <PlayButton/>
+                    </nav>
+                </div>
+                               
+        </div>
+            <div className="container-fluid">
+                
                 <div className="row">
                     <div className="col-md-8" style={{ maxHeight: '50vh', overflowY: 'auto' }}>
                         <div id="editor" />
                         <div id="output" />
                     </div>
-                    <div className="col-md-4" >
-                        <div className="form-check">
-                            <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" onChange={ProcAndPlay} defaultChecked />
-                            <label className="form-check-label" htmlFor="flexRadioDefault1">
-                                p1: ON
-                            </label>
-                        </div>
-                        <div className="form-check">
-                            <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" onChange={ProcAndPlay} />
-                            <label className="form-check-label" htmlFor="flexRadioDefault2">
-                                p1: HUSH
-                            </label>
-                        </div>
-                    </div>
+                <div className="col-md-4" >
+                    <DJControl/>
+                </div>
                 </div>
             </div>
             <canvas id="roll"></canvas>
