@@ -90,6 +90,27 @@ const handleProcessAndPlay = () => {
     globalEditor.evaluate();
 }
 
+const [volume, setVolume] = useState(1)
+const handleVolume = (value) => {
+    const volValue = parseFloat(value);
+    setVolume(volValue);
+    
+    console.log('Volume changed to:', volValue);
+    
+    if (globalEditor) {
+
+        let Originalcode = songText;
+        const codeWithGain = Originalcode.trim() + `\nall(v => v.gain(${volValue}))`;
+        
+        globalEditor.setCode(codeWithGain);
+
+        if (globalEditor.repl?.state?.started) {
+            globalEditor.evaluate();
+            console.log('Volume updated');
+        }
+    }
+}
+
 const [songText, setSongText] = useState(stranger_tune)
 
 useEffect(() => {
@@ -157,7 +178,7 @@ return (
                         <div id="output" />
                     </div>
                 <div className="col-md-4" >
-                    <DJControl/>
+                    <DJControl onVolumeChange={handleVolume} volume={volume}/>
                 </div>
                 </div>
             </div>

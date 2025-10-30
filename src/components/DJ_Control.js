@@ -1,4 +1,5 @@
-function DJControl() {
+function DJControl({ onVolumeChange, volume }) {
+    
     return (  
     <>
     {/* Set CPM */}
@@ -9,8 +10,9 @@ function DJControl() {
     </div>
 
     {/* Volume */}
-    <label htmlFor="volume" className="form-label">Volume</label>
-    <input type="range" className="form-range" min="0" max="1" step="0.01" id="volume_range"></input>
+    <label htmlFor="volume" className="form-label">Volume: {Math.round((volume * 100) / 2)}%</label>
+    <input type="range" className="form-range" min="0" max="2" step="0.1" id="volume_range" value={volume}
+        onChange={(e) => onVolumeChange(e.target.value) }></input>
 
     {/* Check Boxes */}
     <div className="form-check">
