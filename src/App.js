@@ -66,13 +66,17 @@ const handleVolume = (value) => {
     }
 }
 
+const [cpmError, setCpmError] = useState("");
 const handleCPM = (value) => {
   const cpm = parseFloat(value);
   console.log("Set CPM:", cpm);
-  if (isNaN(cpm) || cpm <= 0) {
-    console.warn("Invalid CPM input")
+
+   if (isNaN(cpm) || cpm <= 0) {
+    setCpmError("🎧 Oops! Invalid CPM — beat unchanged 🎚️Invalid CPM! Keeping previous tempo.");
     return;
   }
+
+  setCpmError("");
 
   if (globalEditor) {
     const codeWithCpm = songText.trim() + `\nsetcpm(${cpm})`;
@@ -152,7 +156,7 @@ return (
                         <div id="output" />
                     </div>
                 <div className="col-md-4" >
-                    <DJControl onVolumeChange={handleVolume} volume={volume} setCPM={handleCPM}/>
+                    <DJControl onVolumeChange={handleVolume} volume={volume} setCPM={handleCPM} cpmError={cpmError}/>
                 </div>
                 </div>
             </div>

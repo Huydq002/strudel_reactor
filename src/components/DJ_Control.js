@@ -1,6 +1,6 @@
 import './compsStyle.css';
 
-function DJControl({ onVolumeChange, volume, setCPM }) {
+function DJControl({ onVolumeChange, volume, setCPM , cpmError}) {
     
     return (  
     <>
@@ -10,6 +10,8 @@ function DJControl({ onVolumeChange, volume, setCPM }) {
     
         <input type="text" className="form-control" id="cpm_input" placeholder="120..." aria-label="cpm" onChange={(e) => setCPM(e.target.value)} aria-describedby="cpm_label"/>
     </div>
+     {cpmError && <p style={{ color: "purple", fontWeight: "600" }}>{cpmError}</p>}
+
 
     {/* Volume */}
     <label htmlFor="volume" className="form-label">Volume: {Math.round((volume * 100) / 2)}%</label>
