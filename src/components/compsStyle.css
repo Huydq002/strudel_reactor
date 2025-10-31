@@ -1,0 +1,125 @@
+.header {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #b185db; 
+  text-shadow:
+    0 0 8px #c77dff,
+    0 0 16px #9d4edd,
+    0 0 32px #5a189a;
+  letter-spacing: 1px;
+  margin-bottom: 25px;
+  transition: all 0.3s ease;
+}
+
+
+.header:hover {
+  color: #d0a2f7;
+  text-shadow:
+    0 0 6px #c77dff,
+    0 0 14px rgba(157, 78, 221, 0.5);
+  transform: scale(1.02);
+}
+
+
+/*  BUTTONS  */
+button {
+  align-items: center;
+  background-color: #fee6e3;
+  border: 2px solid #111;
+  border-radius: 8px;
+  box-sizing: border-box;
+  color: #111;
+  cursor: pointer;
+  display: flex;
+  font-family: Inter,sans-serif;
+  font-size: 16px;
+  height: 48px;
+  justify-content: center;
+  line-height: 24px;
+  max-width: 100%;
+  padding: 0 25px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+#play {
+  background: linear-gradient(90deg, #00ff88, #00c3ff);
+  color: rgb(0, 0, 0);
+}
+#play:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(0,255,136,0.4);
+}
+
+#stop {
+  background: linear-gradient(90deg, #ff5757, #ff8c00);
+  color: white;
+}
+#stop:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(255,100,100,0.4);
+}
+
+#process {
+  background: linear-gradient(90deg, #8b5cf6, #3b82f6);
+  color: white;
+}
+#process_play {
+  background: linear-gradient(90deg, #facc15, #f97316);
+  color: black;
+}
+#process:hover, #process_play:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+}
+
+body {
+  background-color: #fafafa;
+  color: #222;
+  font-family: 'Poppins', sans-serif;
+}
+
+.form-label {
+  color: #0d46d7;
+  font-weight: 600;
+  text-shadow: 0 0 4px rgba(0, 150, 255, 0.15);
+  letter-spacing: 0.3px;
+}
+
+
+label[for="volume"] {
+  color: #0096ff; 
+  font-weight: 700;
+  text-shadow: 0 0 6px rgba(0, 150, 255, 0.3);
+}
+
+input[type="text"], textarea {
+  background-color: #ffffff;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  color: #333;
+  transition: all 0.3s ease;
+}
+input[type="text"]:focus, textarea:focus {
+  border-color: #00b4d8;
+  box-shadow: 0 0 10px rgba(0,180,216,0.3);
+}
+
+#volume_range {
+  background: linear-gradient(90deg, #00b4d8, #90e0ef);
+  height: 8px;
+  border-radius: 10px;
+}
+#volume_range::-webkit-slider-thumb {
+  background: #ffffff;
+  border: 2px solid #00b4d8;
+}
+#volume_range::-webkit-slider-thumb:hover {
+  background: #00b4d8;
+  transform: scale(1.2);
+}
