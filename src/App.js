@@ -14,6 +14,9 @@ import ProcessButton from './components/Process_Button';
 import DJControl from './components/DJ_Control';
 import Header from './components/Header';
 import TextArea from './components/Text_Area';
+import Graph from "./components/Graph";
+
+
 
 let globalEditor = null;
 
@@ -89,6 +92,8 @@ const handleCPM = (value) => {
   }
 }
 
+
+
 const [songText, setSongText] = useState(stranger_tune)
 
 useEffect(() => {
@@ -159,11 +164,10 @@ return (
                     <DJControl onVolumeChange={handleVolume} volume={volume} setCPM={handleCPM} cpmError={cpmError}/>
                 </div>
                 </div>
+                <div className="col-md-8" style={{ maxHeight: '70vh', overflowY: 'auto' }}><Graph /></div>
             </div>
             <canvas id="roll"></canvas>
         </main >
     </div >
 );
-
-
 }
