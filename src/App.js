@@ -92,6 +92,38 @@ const handleCPM = (value) => {
   }
 }
 
+const [drums, setDrums] = useState({d1: true,d2: true});
+
+const handleDrums = (drumName, isChecked) => {
+    setDrums(prev => ({ ...prev, [drumName]: isChecked }));
+    
+    if (globalEditor) {
+        let newCode = songText;
+        
+        if (drumName == 'd1') {
+            if (isChecked) {
+                newCode = newCode.replace('// drums:', 'drums:');
+            } else {
+                newCode = newCode.replace('drums:', '// drums:');
+            }
+        }
+
+        if (drumName == 'd2') {
+            if (isChecked) {
+                newCode = newCode.replace('// drums2:', 'drums2:');
+            } else {
+                newCode = newCode.replace('drums2:', '// drums2:');
+            }
+        }
+        setSongText(newCode);
+        globalEditor.setCode(newCode);
+        
+        if (globalEditor.repl?.state?.started) {
+            globalEditor.evaluate();
+        }
+    }
+}
+
 
 
 const [songText, setSongText] = useState(stranger_tune)
@@ -161,7 +193,8 @@ return (
                         <div id="output" />
                     </div>
                 <div className="col-md-4" >
-                    <DJControl onVolumeChange={handleVolume} volume={volume} setCPM={handleCPM} cpmError={cpmError}/>
+                    <DJControl onVolumeChange={handleVolume} volume={volume} setCPM={handleCPM} cpmError={cpmError}
+                        onDrumToggle={handleDrums} drums={drums}/>
                 </div>
                 </div>
                 <div className="col-md-8" style={{ maxHeight: '70vh', overflowY: 'auto' }}><Graph /></div>

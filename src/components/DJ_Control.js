@@ -1,6 +1,6 @@
 import './compsStyle.css';
 
-function DJControl({ onVolumeChange, volume, setCPM , cpmError}) {
+function DJControl({ onVolumeChange, volume, setCPM , cpmError, onDrumToggle, drums}) {
     
     return (  
     <>
@@ -19,37 +19,19 @@ function DJControl({ onVolumeChange, volume, setCPM , cpmError}) {
         onChange={(e) => onVolumeChange(e.target.value) }></input>
 
     {/* Check Boxes */}
-    <div className="form-check">
-        <input className="form-check-input" type="checkbox" value="" id="s1"/>
-        <label className="form-check-label" htmlFor="flexCheckDefault">
-            s1
+    <div className="drum-controls">
+        <h5 className="drum-title">Drum Controls</h5>
+        
+        <label className="drum-checkbox" htmlFor="d1">
+            <input className="drum-input" type="checkbox" id="d1" checked={drums.d1} onChange={(e) => onDrumToggle('d1', e.target.checked)}/>
+            <span className="drum-label">🥁 Drums 1</span>
+        </label>
+        
+        <label className="drum-checkbox" htmlFor="d2">
+            <input className="drum-input" type="checkbox" id="d2" checked={drums.d2} onChange={(e) => onDrumToggle('d2', e.target.checked)}/>
+            <span className="drum-label">🥁 Drums 2</span>
         </label>
     </div>
-    <div className="form-check">
-        <input className="form-check-input" type="checkbox" value="" id="d1"/>
-        <label className="form-check-label" htmlFor="flexCheckDefault">
-            d1
-        </label>
-    </div>
-    <div className="form-check">
-        <input className="form-check-input" type="checkbox" value="" id="d2"/>
-        <label className="form-check-label" htmlFor="flexCheckDefault">
-            d2
-        </label>
-    </div>
-    
-    {/* <div className="form-check">
-        <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" defaultChecked />
-        <label className="form-check-label" htmlFor="flexRadioDefault1">
-            p1: ON
-        </label>
-    </div>
-    <div className="form-check">
-        <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" />
-        <label className="form-check-label" htmlFor="flexRadioDefault2">
-            p1: HUSH
-        </label>
-    </div> */}
     </>   
     );
 }
