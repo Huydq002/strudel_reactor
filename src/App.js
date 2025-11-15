@@ -49,23 +49,48 @@ const handleProcessAndPlay = () => {
 }
 
 const [volume, setVolume] = useState(1)
+const [originalGains, setOriginalGains] = useState({});
+
 const handleVolume = (value) => {
     const volValue = parseFloat(value);
     setVolume(volValue);
-
+    
+    // Send to D3 graph
     window.dispatchEvent(new CustomEvent('d3Data', { detail: `gain:${volValue}` }));
-    console.log('Volume changed to:', volValue);
     
     if (globalEditor) {
-
-        let Originalcode = songText;
-        const codeWithGain = Originalcode.trim() + `\nall(v => v.gain(${volValue}))`;
+        let code = songText;
         
-        globalEditor.setCode(codeWithGain);
-
+        // First time, store original gains
+        if (Object.keys(originalGains).length === 0) {
+            const gains = {};
+            let index = 0;
+            code.replace(/\.gain\(([0-9.]+)\)/g, (match, currentGain) => {
+                gains[index++] = parseFloat(currentGain);
+                return match;
+            });
+            setOriginalGains(gains);
+        }
+        
+        // Replace gain by Original gain * volume
+        let index = 0;
+        code = code.replace(/\.gain\(([0-9.]+)\)/g, (match, currentGain) => {
+            const originalGain = originalGains[index] || parseFloat(currentGain);
+            const newGain = originalGain * volValue;
+            index++;
+            return `.gain(${newGain.toFixed(2)})`;
+        });
+        
+        
+        if (!code.includes('.gain(')) {
+            code = code.trim() + `\n.all(x => x.gain(${volValue}))`;
+        }
+        
+        setSongText(code);
+        globalEditor.setCode(code);
+        
         if (globalEditor.repl?.state?.started) {
             globalEditor.evaluate();
-            console.log('Volume updated');
         }
     }
 }
