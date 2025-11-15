@@ -15,6 +15,7 @@ import DJControl from './components/DJ_Control';
 import Header from './components/Header';
 import TextArea from './components/Text_Area';
 import Graph from "./components/Graph";
+import PresetControl from './components/Preset_Control';
 
 
 
@@ -118,6 +119,26 @@ const handleCPM = (value) => {
   }
 }
 
+const handleResetCPM = () => {
+  setCpmError("");
+
+
+  const cleaned = songText.replace(/setcpm\([^)]*\)\s*/g, "");
+
+  const restored = cleaned.trim(); 
+  setSongText(restored);
+
+  if (globalEditor) {
+    globalEditor.setCode(restored);
+    if (globalEditor.repl?.state?.started) {
+      globalEditor.evaluate();
+    }
+  }
+
+  console.log("CPM reset to default");
+};
+
+
 const [drums, setDrums] = useState({d1: true,d2: true});
 
 const handleDrums = (drumName, isChecked) => {
@@ -149,6 +170,17 @@ const handleDrums = (drumName, isChecked) => {
         }
     }
 }
+
+const [currentCPM, setCurrentCPM] = useState(null);
+
+const handleLoadPreset = (preset) => {
+    if (preset.volume) handleVolume(preset.volume);
+    if (preset.cpm) handleCPM(preset.cpm);
+    if (preset.drums) {
+        setDrums(preset.drums);
+        Object.keys(preset.drums).forEach(d => handleDrums(d, preset.drums[d]));
+    }
+};
 
 
 
@@ -220,7 +252,8 @@ return (
                     </div>
                 <div className="col-md-4" >
                     <DJControl onVolumeChange={handleVolume} volume={volume} setCPM={handleCPM} cpmError={cpmError}
-                        onDrumToggle={handleDrums} drums={drums}/>
+                        onDrumToggle={handleDrums} drums={drums} onResetCPM={handleResetCPM}/>
+                    <PresetControl volume={volume} currentCPM={currentCPM} drums={drums} onLoadPreset={handleLoadPreset}/>
                 </div>
                 </div>
                     <div className="row mt-3">

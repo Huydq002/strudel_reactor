@@ -11,7 +11,6 @@ export default function Graph() {
       const line = String(e.detail || "").trim();
       if (!line) return;
 
-      // Match "gain:0.5"
       const match = line.match(/gain:([0-9.]+)/);
       if (match) {
         const gain = parseFloat(match[1]);

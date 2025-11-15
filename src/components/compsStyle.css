@@ -285,6 +285,30 @@ input[type="text"]:focus, textarea:focus {
   transform: scale(1.02);
 }
 
+.reset-cpm-btn {
+  width: 120px;
+  padding: 6px 0;
+  background: #6a00f4;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.15s;
+  margin-top: 6px;
+}
+
+
+.reset-cpm-btn:hover {
+  background: #5a00d1;
+  transform: scale(1.02);
+}
+
+
+
+
+
 
 /*BACKGROUND*/
 body {
@@ -348,3 +372,64 @@ body {
     background: #667eea;
     border-color: #667eea;
 }
+
+/* --- PRESET CONTROL --- */
+
+.preset-box {
+  padding: 20px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.07);
+  box-shadow: 0 0 18px rgba(157, 78, 221, 0.25),
+              inset 0 0 8px rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(8px);
+  margin-top: 25px;
+}
+
+.preset-title {
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: #930dec;
+  margin-bottom: 16px;
+  text-shadow: 0 0 10px rgba(157, 78, 221, 0.5);
+}
+
+.preset-btn {
+  display: block;
+  width: 100%;
+  padding: 14px 0;
+  margin-bottom: 12px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  text-align: center;
+  color: white;
+  transition: all 0.25s ease;
+  background-size: 200% auto;
+}
+
+.save-btn {
+  background: linear-gradient(90deg, #5e60ce, #7400b8);
+  box-shadow: 0 0 12px rgba(94, 96, 206, 0.5);
+}
+
+.save-btn:hover {
+  background-position: right;
+  transform: scale(1.03);
+  box-shadow: 0 0 20px rgba(94, 96, 206, 0.8);
+}
+
+.load-btn {
+  background: linear-gradient(90deg, #00b4d8, #00e5ff);
+  color: #000;
+  font-weight: 700;
+  box-shadow: 0 0 10px rgba(0, 180, 216, 0.6);
+}
+
+.load-btn:hover {
+  background-position: right;
+  transform: scale(1.03);
+  box-shadow: 0 0 18px rgba(0, 180, 216, 1);
+}
+

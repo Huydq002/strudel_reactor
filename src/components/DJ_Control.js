@@ -1,6 +1,6 @@
 import './compsStyle.css';
 
-function DJControl({ onVolumeChange, volume, setCPM , cpmError, onDrumToggle, drums}) {
+function DJControl({ onVolumeChange, volume, setCPM , cpmError, onDrumToggle, drums, onResetCPM}) {
     
     return (  
     <>
@@ -10,6 +10,12 @@ function DJControl({ onVolumeChange, volume, setCPM , cpmError, onDrumToggle, dr
     
         <input type="text" className="form-control" id="cpm_input" placeholder="120..." aria-label="cpm" onChange={(e) => setCPM(e.target.value)} aria-describedby="cpm_label"/>
     </div>
+    <div className='mb-3'>
+        <button className="reset-cpm-btn" onClick={onResetCPM}>
+            ⏻️ Reset CPM
+        </button>
+    </div>
+    
      {cpmError && <p style={{ color: "purple", fontWeight: "600" }}>{cpmError}</p>}
 
 
