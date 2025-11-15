@@ -52,7 +52,8 @@ const [volume, setVolume] = useState(1)
 const handleVolume = (value) => {
     const volValue = parseFloat(value);
     setVolume(volValue);
-    
+
+    window.dispatchEvent(new CustomEvent('d3Data', { detail: `gain:${volValue}` }));
     console.log('Volume changed to:', volValue);
     
     if (globalEditor) {
@@ -197,7 +198,11 @@ return (
                         onDrumToggle={handleDrums} drums={drums}/>
                 </div>
                 </div>
-                <div className="col-md-8" style={{ maxHeight: '70vh', overflowY: 'auto' }}><Graph /></div>
+                    <div className="row mt-3">
+                        <div className="col-md-12">
+                            <Graph />
+                        </div>
+                    </div>
             </div>
             <canvas id="roll"></canvas>
         </main >
