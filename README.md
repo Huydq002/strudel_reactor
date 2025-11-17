@@ -1,70 +1,59 @@
-# Getting Started with Create React App
+﻿# Strudel 
+### Web Technology – Assignment (SP2 2025)  
+### Author: **Huy Duong Quang**
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+---
 
-## Available Scripts
+## Overview
 
-In the project directory, you can run:
+This project is a React-based live-coding environment built using the Strudel audio engine.  
+It extends the standard Strudel REPL by adding DJ-style interactive controls, audio visualisation, JSON presets, and realtime tempo + gain manipulation.
 
-### `npm start`
+The application enables users to modify Strudel patterns **without manually editing code**, making it more user-friendly for musical experimentation.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🧩 Features
 
-### `npm test`
+### 1. Volume Control (Scaled Gain)
+- Multiplies all `.gain()` values by the slider amount
+- Stores original gains to avoid repeated multiplication
+- Applies fallback gain if `.gain()` not found
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+### 2. CPM (Tempo) Control + Reset
+- Adds `setcpm(x)` dynamically to the Strudel code
+- Prevents invalid CPM values and displays warnings
+- Includes **Reset CPM** which:
+  - Removes all `setcpm(...)`
+  - Restores default tempo
+  - Re-evaluates the project
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 3. Drum Toggles
+- Enables/disables drum patterns dynamically
+- Works by commenting/uncommenting the Strudel labels:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+###  4. JSON Preset Save/Load
+- Saves user settings to `.json` files:
+- Volume
+- CPM
+- Drum toggles
+- Loads the preset instantly using FileReader
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### 5. D3 Gain Graph
+- Real-time gain monitor using WebAudio AnalyserNode
+- Smooth animated waveform-style curve
+- Listens to custom events:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## How to Run
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Open Terminal in project folder then type: npm install
+- Then type: npm run
